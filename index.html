@@ -3,413 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sreejitha C S - Model Portfolio</title>
+<title>Sreejitha C S — Model</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@300;400;500&family=Raleway:wght@200;300;400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bark:#2c1f14;--clay:#7a5c46;--parchment:#f5f0e8;--linen:#ede7da;--crimson:#a33030;--crimson-pale:#c97070;--gold:#b8955a;--gold-pale:#d4b882;--gold-deep:#8a6a38;--white:#ffffff}
-html{scroll-behavior:smooth}
-body{background:var(--parchment);color:var(--bark);font-family:"DM Sans",sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
-.cursor{position:fixed;width:9px;height:9px;background:var(--crimson);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s,opacity .15s;transform:translate(-50%,-50%)}
-.cursor-ring{position:fixed;width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transition:width .3s,height .3s,opacity .3s;transform:translate(-50%,-50%);opacity:.55}
-.cursor.expand{transform:translate(-50%,-50%) scale(2.5);opacity:.4}
-.cursor-ring.expand{width:64px;height:64px;opacity:.25}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Raleway",sans-serif;background:#f8f6f2;color:#111;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:28px 56px;transition:background .5s,padding .4s}
-nav.scrolled{background:rgba(245,240,232,.96);backdrop-filter:blur(14px);padding:16px 56px;border-bottom:1px solid rgba(184,149,90,.2);box-shadow:0 2px 20px rgba(44,31,20,.06)}
-.nav-logo{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:500;letter-spacing:.06em;color:#fff;text-decoration:none;text-shadow:0 1px 14px rgba(0,0,0,.9),0 0 30px rgba(0,0,0,.5);transition:color .4s,text-shadow .4s}
-nav.scrolled .nav-logo{color:var(--bark);text-shadow:none}
-.nav-links{display:flex;gap:40px;list-style:none}
-.nav-links a{font-size:.66rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.98);text-decoration:none;position:relative;text-shadow:0 1px 12px rgba(0,0,0,.9),0 0 20px rgba(0,0,0,.6);transition:color .3s,text-shadow .3s}
-nav.scrolled .nav-links a{color:var(--clay);text-shadow:none}
-.nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .35s}
-.nav-links a:hover{color:#e8c97a !important;text-shadow:none}
-.nav-links a:hover::after{transform:scaleX(1)}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:#fff;z-index:10}
+nav a{text-decoration:none;color:#000;font-size:12px;letter-spacing:2px}
 
 /* HERO */
-#hero{position:relative;height:100vh;display:flex;align-items:flex-end;overflow:hidden}
-
-.hero-bg{
-  position:absolute;inset:0;
-  background-image:url("hero.jpg");
-  background-size:cover;
-  background-position:50% 25%;
-  background-size:cover;
-  transform:scale(1.0);
-  animation:heroZoom 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
-}
-.hero-gradient{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(to right,rgba(6,4,2,.90) 0%,rgba(6,4,2,.72) 22%,rgba(6,4,2,.35) 42%,rgba(6,4,2,.08) 58%,transparent 72%),
-    linear-gradient(to top,rgba(6,4,2,.55) 0%,rgba(6,4,2,.15) 18%,transparent 35%);
-}
-.hero-content{
-  position:relative;z-index:2;
-  padding:0 0 72px 72px;
-  width:100%;
-  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
-  max-width:72%;
-}
-.hero-eyebrow{
-  font-size:.58rem;font-weight:300;letter-spacing:.44em;text-transform:uppercase;
-  color:#e8c97a;margin-bottom:16px;
-  opacity:0;animation:fadeUp .9s cubic-bezier(0.22,1,0.36,1) .4s forwards;
-}
-.hero-name{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(3rem,5.5vw,5.8rem);
-  font-weight:400;line-height:1.05;letter-spacing:-.02em;
-  color:#ffffff;
-  text-shadow:0 2px 24px rgba(0,0,0,.7),0 1px 4px rgba(0,0,0,.9);
-  opacity:0;animation:fadeUp 1s cubic-bezier(0.22,1,0.36,1) .65s forwards;
-}
-.hero-name em{
-  font-style:italic;color:#e8c97a;
-  text-shadow:0 2px 20px rgba(0,0,0,.7),0 0 40px rgba(184,149,90,.25);
-  position:relative;
-}
-.hero-name em::after{
-  content:"";position:absolute;bottom:-6px;left:0;
-  height:1px;width:0;
-  background:linear-gradient(to right,#e8c97a,transparent);
-  animation:underlineGrow .8s cubic-bezier(0.22,1,0.36,1) 1.6s forwards;
-}
-.hero-line{
-  width:52px;height:1px;
-  background:linear-gradient(to right,#e8c97a,#c0392b);
-  margin:20px 0;
-  opacity:0;transform:scaleX(0);transform-origin:left;
-  animation:lineExpand .7s cubic-bezier(0.22,1,0.36,1) 1.0s forwards;
-}
-.hero-subtitle{
-  font-size:.68rem;font-weight:200;letter-spacing:.32em;text-transform:uppercase;
-  color:rgba(255,255,255,.90);
-  text-shadow:0 1px 10px rgba(0,0,0,.85);
-  opacity:0;animation:fadeUp .9s cubic-bezier(0.22,1,0.36,1) 1.15s forwards;
-  line-height:1.8;
-}
-.hero-scroll{
-  position:absolute;bottom:36px;left:24px;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  opacity:0;animation:fadeIn .8s ease 1.8s forwards;
-}
-.hero-scroll span{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.65);writing-mode:vertical-rl;text-shadow:0 1px 6px rgba(0,0,0,.7)}
-.hero-scroll-bar{
-  width:1px;height:56px;
-  background:linear-gradient(to bottom,#e8c97a,transparent);
-  animation:scrollFloat 2.4s ease-in-out 2.2s infinite;
-}
-@keyframes heroZoom{from{transform:scale(1.0)}to{transform:scale(1.0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes lineExpand{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
-@keyframes underlineGrow{from{width:0;opacity:0}to{width:100%;opacity:1}}
-@keyframes scrollFloat{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.45}}
-
-@media(prefers-reduced-motion:reduce){
-  .hero-bg{animation:none;transform:scale(1)}
-  .hero-eyebrow,.hero-name,.hero-line,.hero-subtitle,.hero-scroll{animation:none !important;opacity:1 !important;transform:none !important}
-  .hero-name em::after{animation:none;width:100%;opacity:1}
-  .hero-scroll-bar{animation:none}
-}
-
-/* SECTIONS */
-section{padding:110px 56px}
-.section-header{text-align:center;margin-bottom:64px}
-.section-tag{font-size:.58rem;font-weight:300;letter-spacing:.44em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:12px}
-.section-title{font-family:"Playfair Display",serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;color:var(--bark)}
-.section-title em{font-style:italic;color:var(--gold-deep)}
-.section-desc{margin:14px auto 0;font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:300;font-style:italic;color:var(--clay);max-width:480px;line-height:1.75}
-.divider{width:40px;height:1px;background:linear-gradient(to right,var(--crimson),var(--gold));margin:20px auto 0}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.12s}
+#hero{height:100vh;display:flex}
+.hero-left{flex:1;background:url("hero.jpg") center/cover}
+.hero-right{flex:1;background:#000;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:60px}
+.hero-right h1{font-family:"Bodoni Moda";font-size:60px}
+.hero-right p{letter-spacing:3px;margin-top:10px;font-size:12px}
 
 /* PORTFOLIO */
-#portfolio{background:var(--parchment)}
-.filter-bar{display:flex;justify-content:center;gap:8px;margin-bottom:50px}
-.filter-btn{padding:10px 28px;font-family:"DM Sans",sans-serif;font-size:.6rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;background:transparent;border:1px solid rgba(122,92,70,.28);color:var(--clay);cursor:none;transition:color .35s,border-color .35s;position:relative;overflow:hidden}
-.filter-btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--crimson) 0%,var(--gold-deep) 100%);transform:translateY(100%);transition:transform .35s;z-index:0}
-.filter-btn span{position:relative;z-index:1}
-.filter-btn:hover::before,.filter-btn.active::before{transform:translateY(0)}
-.filter-btn:hover,.filter-btn.active{color:var(--white);border-color:transparent}
-.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:1200px;margin:0 auto}
-.portfolio-item{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:none;background:var(--linen)}
-.portfolio-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .75s cubic-bezier(.25,.46,.45,.94),filter .5s}
-.portfolio-item:hover img{transform:scale(1.09);filter:brightness(.8) saturate(1.05)}
-.portfolio-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,8,4,.78) 0%,rgba(20,8,4,.18) 40%,transparent 65%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:24px}
-.portfolio-item:hover .portfolio-item-overlay{opacity:1}
-.portfolio-item-label{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:300}
-.portfolio-item-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);width:46px;height:46px;border:1px solid rgba(255,255,255,.65);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .38s}
-.portfolio-item:hover .portfolio-item-icon{opacity:1;transform:translate(-50%,-50%) scale(1)}
-
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;cursor:none}
-.lightbox.open{opacity:1;pointer-events:all}
-.lightbox-backdrop{position:absolute;inset:0;background:rgba(15,8,4,.93);backdrop-filter:blur(10px)}
-.lightbox-content{position:relative;z-index:1;max-width:75vw;max-height:88vh;transform:scale(.91);transition:transform .42s cubic-bezier(.25,.46,.45,.94)}
-.lightbox.open .lightbox-content{transform:scale(1)}
-.lightbox-content img{max-width:100%;max-height:88vh;object-fit:contain;display:block;box-shadow:0 32px 80px rgba(0,0,0,.55)}
-.lightbox-close{position:absolute;top:-20px;right:-20px;width:42px;height:42px;background:var(--crimson);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,transform .3s}
-.lightbox-close:hover{background:var(--gold-deep);transform:rotate(90deg)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .3s;backdrop-filter:blur(4px)}
-.lightbox-nav:hover{background:var(--crimson);border-color:var(--crimson)}
-.lightbox-prev{left:-68px}
-.lightbox-next{right:-68px}
-.lightbox-counter{position:absolute;bottom:-38px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.22em;color:rgba(255,255,255,.38);font-weight:300}
+#portfolio{padding:100px 40px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid img{width:100%;height:400px;object-fit:cover}
 
 /* ABOUT */
-#about{background:radial-gradient(ellipse at 80% 10%,rgba(163,48,48,.2) 0%,transparent 48%),radial-gradient(ellipse at 10% 90%,rgba(184,149,90,.16) 0%,transparent 44%),linear-gradient(160deg,#2a1a0e 0%,#3d2614 35%,#2c1e14 65%,#1e1208 100%);position:relative;overflow:hidden}
-#about::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0,transparent 120px,rgba(184,149,90,.025) 120px,rgba(184,149,90,.025) 121px),repeating-linear-gradient(0deg,transparent 0,transparent 80px,rgba(184,149,90,.02) 80px,rgba(184,149,90,.02) 81px);pointer-events:none;z-index:0}
-#about .section-header{position:relative;z-index:1}
-#about .section-tag{color:var(--crimson-pale)}
-#about .section-title{color:#f5ede0}
-#about .section-title em{color:var(--gold-pale)}
-#about .section-desc{color:rgba(245,237,224,.52)}
-#about .divider{background:linear-gradient(to right,var(--crimson),var(--gold))}
-.about-wrapper{max-width:1000px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(184,149,90,.18);overflow:hidden}
-.about-text{padding:60px 52px;background:rgba(255,255,255,.04);border-right:1px solid rgba(184,149,90,.18);position:relative}
-.about-text-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--crimson),var(--gold),transparent)}
-.about-text::after{content:"C";position:absolute;top:10px;right:24px;font-family:"Playfair Display",serif;font-size:11rem;line-height:1;color:rgba(184,149,90,.07);pointer-events:none}
-.about-label{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--crimson-pale);display:block;margin-bottom:20px}
-.about-text h2{font-family:"Playfair Display",serif;font-size:2.4rem;font-weight:400;line-height:1.2;margin-bottom:28px;letter-spacing:-.02em;color:#f5ede0}
-.about-text h2 em{font-style:italic;color:var(--gold-pale)}
-.about-text p{font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:400;line-height:1.9;color:rgba(245,237,224,.75)}
-.about-text p+p{margin-top:18px}
-.about-stats{padding:60px 52px;background:rgba(0,0,0,.22);position:relative}
-.about-stats::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--crimson),transparent)}
-.stats-title{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-pale);display:block;margin-bottom:32px}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr}
-.stat-item{padding:18px 0;border-bottom:1px solid rgba(184,149,90,.14)}
-.stat-item:nth-child(odd){padding-right:24px;border-right:1px solid rgba(184,149,90,.14)}
-.stat-item:nth-child(even){padding-left:24px}
-.stat-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(245,237,224,.38);display:block;margin-bottom:6px}
-.stat-value{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:500;color:#f5ede0;letter-spacing:.02em}
-.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
-.about-tag{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;padding:7px 16px;border:1px solid rgba(184,149,90,.25);color:rgba(245,237,224,.55);background:rgba(184,149,90,.07)}
+#about{display:flex}
+.about-img{flex:1;background:url("img3.jpg") center/cover;height:500px}
+.about-text{flex:1;padding:60px}
+.about-text h2{font-family:"Bodoni Moda";font-size:40px}
 
 /* CONTACT */
-#contact{background:var(--bark);padding:110px 56px;text-align:center;position:relative;overflow:hidden}
-#contact::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center top,rgba(163,48,48,.16) 0%,transparent 56%);pointer-events:none}
-#contact::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(184,149,90,.12) 0%,transparent 52%);pointer-events:none}
-#contact .section-tag{color:var(--crimson-pale)}
-#contact .section-title{color:#f5ede0}
-#contact .section-title em{color:var(--gold-pale)}
-#contact .section-desc{color:rgba(245,237,224,.48)}
-#contact .divider{background:linear-gradient(to right,var(--crimson),var(--gold))}
-.contact-grid{display:flex;justify-content:center;gap:80px;margin-top:62px;flex-wrap:wrap;position:relative;z-index:1}
-.contact-item{text-align:center}
-.contact-item-icon{width:50px;height:50px;border:1px solid rgba(184,149,90,.28);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;transition:all .35s}
-.contact-item:hover .contact-item-icon{background:var(--crimson);border-color:var(--crimson)}
-.contact-item-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;transition:stroke .3s}
-.contact-item:hover .contact-item-icon svg{stroke:white}
-.contact-item-label{font-size:.57rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,237,224,.38);display:block;margin-bottom:8px}
-.contact-item-value{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:400;color:rgba(245,237,224,.85)}
-.contact-item-value a{color:inherit;text-decoration:none;transition:color .3s}
-.contact-item-value a:hover{color:var(--gold-pale)}
+#contact{padding:100px 40px;text-align:center}
+footer{text-align:center;padding:20px;background:#000;color:#fff;font-size:12px}
 
-/* FOOTER */
-footer{background:#1a0e08;padding:38px 56px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(184,149,90,.12)}
-.footer-logo{font-family:"Playfair Display",serif;font-size:1.1rem;color:rgba(245,237,224,.45);letter-spacing:.05em}
-.footer-logo em{font-style:italic;color:var(--gold)}
-.footer-copy{font-size:.58rem;letter-spacing:.18em;color:rgba(245,237,224,.2);text-transform:uppercase}
-
-/* RESPONSIVE */
-@media(max-width:1024px){nav,nav.scrolled{padding-left:36px;padding-right:36px}section,#contact{padding:90px 36px}.hero-content{padding:0 0 64px 48px;max-width:80%}.hero-scroll{left:16px}.portfolio-grid{grid-template-columns:repeat(2,1fr)}.lightbox-prev{left:-48px}.lightbox-next{right:-48px}}
-@media(max-width:768px){nav,nav.scrolled{padding:18px 24px}.nav-links{gap:22px}section,#contact{padding:80px 24px}.hero-content{padding:0 0 52px 28px;max-width:90%}.hero-scroll{left:16px}.hero-name{font-size:clamp(2.2rem,7vw,3.5rem)}.portfolio-grid{grid-template-columns:repeat(2,1fr);gap:2px}.about-wrapper{grid-template-columns:1fr}.about-text{border-right:none;border-bottom:1px solid rgba(184,149,90,.18);padding:40px 30px}.about-stats{padding:40px 30px}.contact-grid{gap:44px}footer{flex-direction:column;gap:12px;text-align:center;padding:28px}.lightbox-content{max-width:90vw}.lightbox-prev{left:-36px}.lightbox-next{right:-36px}}
-@media(max-width:480px){.nav-links{display:none}.portfolio-grid{grid-template-columns:1fr}.hero-content{padding:0 0 48px 20px;max-width:98%}.hero-scroll{left:12px}.lightbox-prev,.lightbox-next{top:auto;transform:none;bottom:-58px}.lightbox-prev{left:10px}.lightbox-next{right:10px}}
+@media(max-width:768px){
+  #hero{flex-direction:column}
+  #about{flex-direction:column}
+  .grid{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">Sreejitha C S</a>
-  <ul class="nav-links">
-    <li><a href="#portfolio">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+
+<nav>
+  <a href="#">Sreejitha C S</a>
+  <div>
+    <a href="#portfolio">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
 </nav>
+
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Model Portfolio &nbsp;&middot;&nbsp; Wayanad, Kerala</p>
-    <h1 class="hero-name">Sreejitha &nbsp;<em>C S</em></h1>
-    <div class="hero-line"></div>
-    <p class="hero-subtitle">Commercial &nbsp;&middot;&nbsp; Lifestyle &nbsp;&middot;&nbsp; Ethnic</p>
+  <div class="hero-left"></div>
+  <div class="hero-right">
+    <h1>Sreejitha C S</h1>
+    <p>COMMERCIAL • LIFESTYLE • ETHNIC</p>
   </div>
-  <div class="hero-scroll"><div class="hero-scroll-bar"></div><span>Scroll</span></div>
 </section>
+
 <section id="portfolio">
-  <div class="section-header reveal">
-    <span class="section-tag">Portfolio</span>
-    <h2 class="section-title">Selected <em>Work</em></h2>
-    <p class="section-desc">A curated collection of commercial and lifestyle imagery &mdash; crafted with intention, told through presence.</p>
-    <div class="divider"></div>
-  </div>
-  <div class="filter-bar reveal reveal-d1">
-    <button class="filter-btn active" data-filter="all"><span>All</span></button>
-    <button class="filter-btn" data-filter="lifestyle"><span>Lifestyle</span></button>
-    <button class="filter-btn" data-filter="ethnic"><span>Ethnic</span></button>
-  </div>
-  <div class="portfolio-grid" id="portfolioGrid">
-    <div class="portfolio-item" data-category="lifestyle"><img src="img9.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="lifestyle"><img src="img1.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="lifestyle"><img src="img2.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="ethnic"><img src="img3.jpg" alt="Ethnic"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Ethnic</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="lifestyle"><img src="img4.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="lifestyle"><img src="img5.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="lifestyle"><img src="img6.jpg" alt="Lifestyle"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Lifestyle</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="ethnic"><img src="img7.jpg" alt="Ethnic"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Ethnic</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
-    <div class="portfolio-item" data-category="ethnic"><img src="img8.jpg" alt="Ethnic"><div class="portfolio-item-overlay"><span class="portfolio-item-label">Ethnic</span></div><div class="portfolio-item-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
+  <h2 style="text-align:center;margin-bottom:40px;font-family:'Bodoni Moda'">Portfolio</h2>
+  <div class="grid">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+    <img src="img4.jpg">
+    <img src="img5.jpg">
+    <img src="img6.jpg">
+    <img src="img7.jpg">
+    <img src="img8.jpg">
+    <img src="img9.jpg">
   </div>
 </section>
+
 <section id="about">
-  <div class="section-header reveal">
-    <span class="section-tag">The Face Behind the Lens</span>
-    <h2 class="section-title">Meet <em>Sreejitha</em></h2>
-    <p class="section-desc">A confident presence with a natural sense of expression and style.</p>
-    <div class="divider"></div>
-  </div>
-  <div class="about-wrapper reveal reveal-d1">
-    <div class="about-text">
-      <div class="about-text-accent"></div>
-      <span class="about-label">About</span>
-      <h2>Confidence<br>in every <em>frame</em></h2>
-      <p>A versatile model with a natural on-camera presence, Sreejitha brings confidence, elegance, and expressive depth to every shoot.</p>
-      <p>With a focus on commercial and lifestyle photography, she adapts seamlessly across styles &mdash; delivering clean, impactful visuals suited for modern fashion and brand storytelling.</p>
-      <p>Currently building a refined portfolio across lifestyle and ethnic aesthetics, with an emphasis on authenticity, detail, and visual consistency.</p>
-    </div>
-    <div class="about-stats">
-      <span class="stats-title">Measurements</span>
-      <div class="stats-grid">
-        <div class="stat-item"><span class="stat-label">Height</span><span class="stat-value">162 cm</span></div>
-        <div class="stat-item"><span class="stat-label">Weight</span><span class="stat-value">50 kg</span></div>
-        <div class="stat-item"><span class="stat-label">Bust</span><span class="stat-value">32&ndash;34&quot;</span></div>
-        <div class="stat-item"><span class="stat-label">Waist</span><span class="stat-value">26&ndash;28&quot;</span></div>
-        <div class="stat-item" style="border-bottom:none"><span class="stat-label">Hips</span><span class="stat-value">34&ndash;36&quot;</span></div>
-        <div class="stat-item" style="border-bottom:none"><span class="stat-label">Based In</span><span class="stat-value" style="font-size:.88rem">Wayanad, KL</span></div>
-      </div>
-      <div class="about-tags">
-        <span class="about-tag">Commercial</span>
-        <span class="about-tag">Lifestyle</span>
-        <span class="about-tag">Ethnic</span>
-        <span class="about-tag">Editorial</span>
-      </div>
-    </div>
+  <div class="about-img"></div>
+  <div class="about-text">
+    <h2>About</h2>
+    <p>A versatile model with strong on-camera presence and natural expression.</p>
   </div>
 </section>
+
 <section id="contact">
-  <div class="section-header reveal">
-    <span class="section-tag">Get In Touch</span>
-    <h2 class="section-title">Let&apos;s Create <em>Together</em></h2>
-    <p class="section-desc">Available for commercial shoots, brand collaborations, and editorial projects.</p>
-    <div class="divider"></div>
-  </div>
-  <div class="contact-grid reveal reveal-d1">
-    <div class="contact-item">
-      <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-      <span class="contact-item-label">Phone</span>
-      <div class="contact-item-value"><a href="tel:8921902720">89219 02720</a></div>
-    </div>
-    <div class="contact-item">
-      <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <span class="contact-item-label">Email</span>
-      <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#a0c3d3d3d2c5c5cac9d4c8c1e0c7cdc1c9cc8ec3cfcd">cssreejitha&#64;gmail.com</a></div>
-    </div>
-    <div class="contact-item">
-      <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <span class="contact-item-label">Location</span>
-      <div class="contact-item-value">Wayanad, Kerala</div>
-    </div>
-  </div>
+  <h2>Contact</h2>
+  <p>Phone: 89219 02720</p>
+  <p>Email: cssreejitha@gmail.com</p>
 </section>
+
 <footer>
-  <div class="footer-logo">Sreejitha <em>C S</em></div>
-  <div class="footer-copy">&copy; 2025 &nbsp;&middot;&nbsp; All rights reserved</div>
+  © 2025 Sreejitha C S
 </footer>
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
-  <div class="lightbox-content">
-    <img src="" alt="" id="lightboxImg">
-    <button class="lightbox-close" id="lightboxClose"><svg viewBox="0 0 24 24" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2"/><line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"/></svg></button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg></button>
-    <div class="lightbox-counter" id="lightboxCounter"></div>
-  </div>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function(){
-var cursor=document.getElementById("cursor");
-var ring=document.getElementById("cursorRing");
-var mx=0,my=0,rx=0,ry=0;
-document.addEventListener("mousemove",function(e){mx=e.clientX;my=e.clientY;cursor.style.left=mx+"px";cursor.style.top=my+"px";});
-function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(animRing);}
-animRing();
-document.querySelectorAll("a,button,.portfolio-item,.filter-btn").forEach(function(el){
-  el.addEventListener("mouseenter",function(){cursor.classList.add("expand");ring.classList.add("expand");});
-  el.addEventListener("mouseleave",function(){cursor.classList.remove("expand");ring.classList.remove("expand");});
-});
-var navbar=document.getElementById("navbar");
-window.addEventListener("scroll",function(){navbar.classList.toggle("scrolled",window.scrollY>60);},{passive:true});
-function checkReveals(){document.querySelectorAll(".reveal").forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight*0.97){el.classList.add("visible");}});}
-checkReveals();
-window.addEventListener("scroll",checkReveals,{passive:true});
-setTimeout(checkReveals,200);
-var gridDone=false;
-function checkGrid(){
-  if(gridDone)return;
-  var g=document.getElementById("portfolioGrid");
-  if(g&&g.getBoundingClientRect().top<window.innerHeight*0.97){
-    gridDone=true;
-    g.querySelectorAll(".portfolio-item").forEach(function(item,i){
-      item.style.opacity="0";item.style.transform="translateY(22px)";
-      setTimeout(function(){item.style.transition="opacity 0.6s ease,transform 0.6s ease";item.style.opacity="1";item.style.transform="translateY(0)";},i*80);
-    });
-  }
-}
-checkGrid();
-window.addEventListener("scroll",checkGrid,{passive:true});
-setTimeout(checkGrid,200);
-var allItems=document.querySelectorAll(".portfolio-item");
-document.querySelectorAll(".filter-btn").forEach(function(btn){
-  btn.addEventListener("click",function(){
-    document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
-    this.classList.add("active");
-    var f=this.dataset.filter;
-    allItems.forEach(function(item){
-      var match=(f==="all")||(item.dataset.category===f);
-      if(match){item.style.display="";item.style.opacity="0";item.style.transform="scale(0.96)";item.style.transition="opacity 0.4s ease,transform 0.4s ease";setTimeout(function(){item.style.opacity="1";item.style.transform="scale(1)";},20);}
-      else{item.style.display="none";}
-    });
-  });
-});
-var lb=document.getElementById("lightbox");
-var lbImg=document.getElementById("lightboxImg");
-var lbCounter=document.getElementById("lightboxCounter");
-var activeImgs=[],curIdx=0;
-lbImg.style.transition="opacity 0.18s ease";
-function visibleImgs(){return Array.from(document.querySelectorAll(".portfolio-item img")).filter(function(img){return img.closest(".portfolio-item").style.display!=="none";});}
-function openLB(img){activeImgs=visibleImgs();curIdx=activeImgs.indexOf(img);lbImg.src=img.src;lbImg.alt=img.alt;lbCounter.textContent=(curIdx+1)+" / "+activeImgs.length;lb.classList.add("open");document.body.style.overflow="hidden";}
-function closeLB(){lb.classList.remove("open");document.body.style.overflow="";}
-function navigate(dir){curIdx=(curIdx+dir+activeImgs.length)%activeImgs.length;lbImg.style.opacity="0";setTimeout(function(){lbImg.src=activeImgs[curIdx].src;lbCounter.textContent=(curIdx+1)+" / "+activeImgs.length;lbImg.style.opacity="1";},180);}
-allItems.forEach(function(item){item.addEventListener("click",function(){openLB(item.querySelector("img"));});});
-document.getElementById("lightboxClose").addEventListener("click",closeLB);
-document.getElementById("lightboxBackdrop").addEventListener("click",closeLB);
-document.getElementById("lightboxPrev").addEventListener("click",function(e){e.stopPropagation();navigate(-1);});
-document.getElementById("lightboxNext").addEventListener("click",function(e){e.stopPropagation();navigate(1);});
-document.addEventListener("keydown",function(e){if(!lb.classList.contains("open"))return;if(e.key==="Escape")closeLB();if(e.key==="ArrowLeft")navigate(-1);if(e.key==="ArrowRight")navigate(1);});
-var tsX=0;
-lb.addEventListener("touchstart",function(e){tsX=e.touches[0].clientX;},{passive:true});
-l
-lb.addEventListener("touchend",function(e){var d=tsX-e.changedTouches[0].clientX;if(Math.abs(d)>50)navigate(d>0?1:-1);});
-})();
-</script>
+
 </body>
 </html>
